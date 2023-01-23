@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 50px;
+        }
+
+        main {
+            width: 250px;
+            height: 300px;
+            /* background-color: rgb(244, 136, 21); */
+            background-color: #4158D0;
+            background-image: linear-gradient(43deg, #4158D0 5%, #FFCC70 30%, #C850C0 100%);
+
+            border: 2px solid black;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 70px;
+
+        }
+
+        .mdiv {
+            width: 120px;
+            height: 80px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+        }
+
+        .p1,
+        .p2,
+        .p3 {
+            width: 70px;
+            height: 30px;
+            background-color: rgb(108, 81, 53);
+            text-align: center;
+             background: #636a3e; border: 1px solid rgb(50, 41, 30);
+            border-radius: 15px;
+            box-shadow: 4px 4px 5px #44492b,
+                -2px -2px 5px #828b51;
+         
+
+        }
+
+        .div1 {
+            width: 200px;
+            height: 50px;
+            background-color: rgb(78, 78, 21);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 3px gray;
+
+
+        }
+
+        .div2 {
+            display: flex;
+            align-items: center;
+        }
+
+        .inp {
+            width: 70px;
+            border-radius: 5px;
+        }
+
+        .but {
+            border-radius: 15px;
+            background-color: rgb(114, 114, 66);
+
+            text-align: center;
+
+
+        }
+
+        .but:hover {
+            background-color: #a2aa7c;
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <p class=" m-1"><b> ABS Alarm</b> </p>
+        <div class="mdiv">
+            <div class="p1 m-1 text-white">
+                <p id="demo"></p>
+            </div>
+            <div class="p2 m-1 text-white">
+                <p id="demo1"></p>
+            </div>
+            <div class="p3 m-1 text-white">
+                <p id="demo2"></p>
+            </div>
+
+        </div>
+        <div class="div1 p-2">
+
+
+            <div class="p4">
+                <p class="text-white" id="semo"></p>
+            </div>
+            <div class="p5">
+                <p class="text-white" id="semo1"></p>
+            </div>
+            <div class="p6">
+                <p class="text-white" id="semo2"></p>
+            </div>
+
+            <div class="p7">
+                <p class="" id="semo2"></p>
+            </div>
+
+
+        </div>
+        <div>
+            <div class="p8 M-1">
+                <p class="M-1" id="screen"></p>
+            </div>
+
+
+        </div>
+        <div class="div2">
+            <input class="inp m-1" type="text" name="" id="input1" placeholder="H">
+            <input class="inp m-1" type="text" name="" id="input2" placeholder="M">
+            <input class="inp m-1" type="text" name="" id="input3" placeholder="S">
+        </div>
+        <button class="but m-3 " onclick="setty()">set</button>
+        <audio src="./audio/iphone tone.mpeg" id="aud" preload="auto"></audio>
+
+    </main>
+
+</body>
+
+</html>
+<script>
+    let today = new Date();
+
+    setInterval(() => {
+        document.getElementById('demo').innerHTML = today.toLocaleTimeString()
+        if (today == Date) {
+
+        } else {
+            let abs = new Date()
+
+            document.getElementById('demo').innerHTML = abs.getHours()
+            document.getElementById('demo1').innerHTML = abs.getMinutes()
+            document.getElementById('demo2').innerHTML = abs.getSeconds()
+        }
+    }, 0);
+
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    let days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    document.getElementById('semo').innerHTML = days[today.getDay()];
+    document.getElementById('semo1').innerHTML = months[today.getMonth()];
+    document.getElementById('semo2').innerHTML = today.getDate()
+    document.getElementById('semo3').innerHTML = today.getFullYear();
+
+    function setty() {
+        document.getElementById('screen').innerHTML = 'alarm set'
+
+        let stop = setInterval(() => {
+            let input1 = document.getElementById('input1')
+            let input2 = document.getElementById('input2')
+            let input3 = document.getElementById('input3')
+
+            let abs = new Date()
+            if (Number(input1.value) == abs.getHours() && Number(input2.value) == abs.getMinutes() && Number(input3.value) == abs.getSeconds()) {
+                clearInterval(stop)
+                document.getElementById('screen').innerHTML = "Wake UP";
+                document.getElementById('aud').play();
+
+            }
+        }, 1000);
+    }
+</script>
